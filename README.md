@@ -1,5 +1,12 @@
 # Weather Conditions
 
+## Prepare your environment 💻
+
+Make sure your system meets the following requirements:
+
+- node >= 8.9.3
+- npm >= 5.5.1
+
 ## Launching 🚀
 
 Install required packages:
