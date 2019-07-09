@@ -104,17 +104,16 @@ export default {
       this.units = UNIT_FAHRENHEIT;
     },
 
-    formatTemperature(temperature) {
-      // First convert from Kelvin to selected unit
-      let temperatureConverted;
+    convertTemperatureFromKelvin(temperature) {
       if (this.areUnitsCelcius) {
-        temperatureConverted = temperature - 273.15;
+        return temperature - 273.15;
       } else {
-        temperatureConverted = (temperature * (9/5)) - 459.67;
+        return (temperature * (9/5)) - 459.67;
       }
+    },
 
-      // Then round
-      return Math.round(temperatureConverted);
+    formatTemperature(temperature) {
+      return Math.round(this.convertTemperatureFromKelvin(temperature));
     },
 
     weekdayName(dateStr) {
