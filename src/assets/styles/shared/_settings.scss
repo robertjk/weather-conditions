@@ -1,0 +1,27 @@
+/*
+ * Constants used throughout multiple stylesheets
+ */
+
+
+$font-size-small:    1.2rem;
+$font-size-medium:   2.0rem;
+$font-size-large:    2.4rem;
+$font-size-xlarge:   3.2rem;
+$font-size-xxlarge:  4.0rem;
+$font-size-xxxlarge: 9.0rem;
+
+$font-size-primary: $font-size-medium;
+
+$color-white:      #fff;
+$color-black:      #000000;
+$color-grey-dark:  #222222;
+$color-grey-light: #e0e4e8;
+$color-orange:     #ff8143;
+
+$color-text-primary:         $color-white;
+$color-background-primary:   $color-white;
+
+$border-radius: 8px;
+$border-width:  4px;
+$border-style:  solid;
+$border-color:  $color-black;

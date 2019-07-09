@@ -1,0 +1,11 @@
+/*
+ * Change box model for all elements on the page - use border box
+ * instead of default content box.
+ */
+
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}

@@ -1,0 +1,22 @@
+/*
+ * Base styles for typography (fonts)
+ */
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:700');
+@import '@/assets/styles/shared/_settings.scss';
+
+
+html {
+  /* 10px used for easy rem values calculations */
+  font-size: 10px;
+}
+
+body {
+  color: $color-text-primary;
+  background-color: $color-background-primary;
+  font-size: $font-size-primary;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+}
