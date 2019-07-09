@@ -21,6 +21,12 @@ Use the following command to run the app:
 $ npm run serve
 ```
 
+To run the tests
+
+```bash
+$ npm run test:unit
+```
+
 ## DOM Scripting
 
 The requirements of this widget are:
