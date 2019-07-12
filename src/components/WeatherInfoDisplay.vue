@@ -142,9 +142,9 @@ export default {
 
       <!-- Toggle for changing units -->
       <WeatherInfoUnitSelection
+        class="WeatherInfoDisplay-unitToggle"
         @celciusSelected="changeUnitsToCelcius()"
         @fahrenheitSelected="changeUnitsToFahrenheit()"
-        class="WeatherInfoDisplay-unitToggle"
       />
     </div>
 

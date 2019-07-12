@@ -46,19 +46,19 @@ export default {
 <template>
   <div class="WeatherInfoUnitSelection">
     <button
-      @click="selectCelcius()"
       class="WeatherInfoUnitSelection-unitButton"
       :class="{ 'WeatherInfoUnitSelection--isActive': isCelciusSelected }"
       aria-label="Celcius"
-      >
+      @click="selectCelcius()"
+    >
       C
     </button>
       <button
-        @click="selectFahrenheit()"
         class="WeatherInfoUnitSelection-unitButton"
         :class="{ 'WeatherInfoUnitSelection--isActive': isFahrenheitSelected }"
         aria-label="Fahrenheit"
-        >
+        @click="selectFahrenheit()"
+      >
         F
       </button>
   </div>
