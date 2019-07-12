@@ -4,20 +4,11 @@
 
 
 <script>
-import { WEATHER_FORECAST_DAYS } from '@/components/WeatherInfo.vue';
-import WeatherInfoIcon from '@/components/WeatherInfoIcon.vue';
-import { default as WeatherInfoUnitSelection, UNIT_CELCIUS, UNIT_FAHRENHEIT }
-  from '@/components/WeatherInfoUnitSelection.vue'; 
+import { WEATHER_FORECAST_DAYS } from '@/components/WeatherInfo';
+import WeatherInfoIcon from '@/components/WeatherInfoIcon';
+import WeatherInfoUnitSelection from '@/components/WeatherInfoUnitSelection'; 
 
-const WEEKDAYS_NAMES = {
-  1: 'Mon',
-  2: 'Tue',
-  3: 'Wed',
-  4: 'Thu',
-  5: 'Fri',
-  6: 'Sat',
-  7: 'Sun',
-};
+import weatherDataFormatting from '@/mixins/weatherDataFormatting';
 
 
 export default {
@@ -27,6 +18,10 @@ export default {
     WeatherInfoIcon,
     WeatherInfoUnitSelection,
   },
+
+  mixins: [
+    weatherDataFormatting,
+  ],
 
   data() {
     return {
@@ -94,23 +89,6 @@ export default {
     changeUnitsToFahrenheit() {
       this.units = UNIT_FAHRENHEIT;
     },
-
-    convertTemperatureFromKelvin(temperature) {
-      if (this.units === UNIT_CELCIUS) {
-        return temperature - 273.15;
-      } else {
-        return (temperature * (9/5)) - 459.67;
-      }
-    },
-
-    formatTemperature(temperature) {
-      return Math.round(this.convertTemperatureFromKelvin(temperature));
-    },
-
-    weekdayName(dateStr) {
-      let weekdayNumber = ((new Date(dateStr).getDay() + 7) % 7) + 1;
-      return WEEKDAYS_NAMES[weekdayNumber];
-    },
   },
 };
 </script>
@@ -130,12 +108,12 @@ export default {
 
         <span class="WeatherInfoDisplay-todayTemperatures">
           <span class="WeatherInfoDisplay-todayCurrent">
-            {{ formatTemperature(weatherCurrent.main.temp) }}°
+            {{ formatTemperature(weatherCurrent.main.temp, units) }}°
           </span>
 
           <span class="WeatherInfoDisplay-todayExtremes">
-            {{ formatTemperature(weatherCurrent.main.temp_min) }} /
-            {{ formatTemperature(weatherCurrent.main.temp_max) }}°
+            {{ formatTemperature(weatherCurrent.main.temp_min, units) }} /
+            {{ formatTemperature(weatherCurrent.main.temp_max, units) }}°
           </span>
         </span>
       </div>
@@ -166,7 +144,7 @@ export default {
             {{ weekday }}
           </span>
           <!-- Min and max temperatures -->
-          {{ formatTemperature(max) }}/{{ formatTemperature(min) }}°
+          {{ formatTemperature(max, units) }}/{{ formatTemperature(min, units) }}°
         </span>
       </li>
     </ul>

@@ -6,7 +6,7 @@
 
 
 <script>
-import WeatherInfo from '@/components/WeatherInfo.vue';
+import WeatherInfo from '@/components/WeatherInfo';
 
 
 export default {

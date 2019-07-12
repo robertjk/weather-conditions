@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Vue from 'vue';
 
-import WeatherInfoDisplay from '@/components/WeatherInfoDisplay.vue';
+import WeatherInfoDisplay from '@/components/WeatherInfoDisplay';
 
 
 // Kelvin to Fahrenheit conversions are not round, so the float rounding errors
@@ -9,7 +9,7 @@ import WeatherInfoDisplay from '@/components/WeatherInfoDisplay.vue';
 const DELTA_FAHRENHEIT = 0.01;
 
 
-describe('WeatherInfoDisplay.vue', () => {
+describe('WeatherInfoDisplay', () => {
   let component = new Vue(WeatherInfoDisplay);
   let convert = component.convertTemperatureFromKelvin;
 
