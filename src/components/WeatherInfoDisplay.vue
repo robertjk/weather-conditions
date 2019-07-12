@@ -5,10 +5,8 @@
 
 <script>
 import { WEATHER_FORECAST_DAYS } from '@/components/WeatherInfo.vue';
-
-
-const UNIT_CELCIUS = 'celcius';
-const UNIT_FAHRENHEIT = 'fahrenheit';
+import { default as WeatherInfoUnitSelection, UNIT_CELCIUS, UNIT_FAHRENHEIT }
+  from '@/components/WeatherInfoUnitSelection.vue'; 
 
 const WEEKDAYS_NAMES = {
   1: 'Mon',
@@ -29,9 +27,13 @@ const WEATHER_API_ICON_EXTENSION = '.png';
 export default {
   name: 'WeatherInfoDisplay',
 
+  components: {
+    WeatherInfoUnitSelection,
+  },
+
   data() {
     return {
-      units: UNIT_CELCIUS,
+      units: undefined,
     };
   },
 
@@ -100,7 +102,7 @@ export default {
       this.units = UNIT_CELCIUS;
     },
 
-    changeUnitsToFenhrenheit() {
+    changeUnitsToFahrenheit() {
       this.units = UNIT_FAHRENHEIT;
     },
 
@@ -155,24 +157,11 @@ export default {
       </div>
 
       <!-- Toggle for changing units -->
-      <div class="WeatherInfoDisplay-unitToggle">
-        <button
-          @click="changeUnitsToCelcius()"
-          class="WeatherInfoDisplay-unitToggleButton"
-          :class="{ 'WeatherInfoDisplay--isActive': areUnitsCelcius }"
-          aria-label="Celcius"
-        >
-          C
-        </button>
-        <button
-          @click="changeUnitsToFenhrenheit()"
-          class="WeatherInfoDisplay-unitToggleButton"
-          :class="{ 'WeatherInfoDisplay--isActive': areUnitsFahrenheit }"
-          aria-label="Fahrenheit"
-        >
-          F
-        </button>
-      </div>
+      <WeatherInfoUnitSelection
+        @celciusSelected="changeUnitsToCelcius()"
+        @fahrenheitSelected="changeUnitsToFahrenheit()"
+        class="WeatherInfoDisplay-unitToggle"
+      />
     </div>
 
     <!-- Forecast for the next 5 days -->
@@ -258,35 +247,6 @@ export default {
   position: absolute;
   right: 0.6rem;
   bottom: 1.5rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-
-
-.WeatherInfoDisplay-unitToggleButton {
-  $size: 3rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid $color-white;
-  width: $size;
-  height: $size;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  & + & {
-    margin-left: 0.8rem;
-  }
-
-  &.WeatherInfoDisplay--isActive {
-    border: none;
-    color: $color-grey-dark;
-    background-color: $color-white;
-  }
 }
 
 
