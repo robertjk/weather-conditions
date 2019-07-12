@@ -4,7 +4,7 @@
 
 
 <script>
-import WeatherInfoDisplay from '@/components/WeatherInfoDisplay';
+import WeatherInfoDisplay from '@/components/WeatherInfoDisplay.vue';
 
 
 // States the component can be in

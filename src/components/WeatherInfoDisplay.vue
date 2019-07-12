@@ -5,6 +5,7 @@
 
 <script>
 import { WEATHER_FORECAST_DAYS } from '@/components/WeatherInfo.vue';
+import WeatherInfoIcon from '@/components/WeatherInfoIcon.vue';
 import { default as WeatherInfoUnitSelection, UNIT_CELCIUS, UNIT_FAHRENHEIT }
   from '@/components/WeatherInfoUnitSelection.vue'; 
 
@@ -18,16 +19,12 @@ const WEEKDAYS_NAMES = {
   7: 'Sun',
 };
 
-// Weather API parameters
-const WEATHER_API_ICON_URL_BASE = 'http://openweathermap.org/img/wn/';
-const WEATHER_API_BIG_SIZE_PARAM = '@2x';
-const WEATHER_API_ICON_EXTENSION = '.png';
-
 
 export default {
   name: 'WeatherInfoDisplay',
 
   components: {
+    WeatherInfoIcon,
     WeatherInfoUnitSelection,
   },
 
@@ -114,11 +111,6 @@ export default {
       let weekdayNumber = ((new Date(dateStr).getDay() + 7) % 7) + 1;
       return WEEKDAYS_NAMES[weekdayNumber];
     },
-
-    weatherIconUrl(iconId, big = false) {
-      let iconPart = big ? (iconId + WEATHER_API_BIG_SIZE_PARAM) : iconId;
-      return WEATHER_API_ICON_URL_BASE + iconPart + WEATHER_API_ICON_EXTENSION;
-    },
   },
 };
 </script>
@@ -129,10 +121,10 @@ export default {
     <div class="WeatherInfoDisplay-topRow">
       <!-- Current weather -->
       <div class="WeatherInfoDisplay-today">
-        <!-- Icon with weather symbol -->
-        <img
-          :src="weatherIconUrl(weatherCurrent.weather[0].icon, true)"
-          :alt="weatherCurrent.weather[0].description"
+        <WeatherInfoIcon
+          :iconId="weatherCurrent.weather[0].icon"
+          :description="weatherCurrent.weather[0].description"
+          :bigSize="true"
           class="WeatherInfoDisplay-todayIcon"
         />
 
@@ -162,10 +154,9 @@ export default {
         v-for="[weekday, { max, min, icon }] in weatherForecastProcessed"
         class="WeatherInfoDisplay-forecastDay"
       >
-        <!-- Icon with weather symbol -->
-        <img
-          :src="weatherIconUrl(icon.id)"
-          :alt="icon.description"
+        <WeatherInfoIcon
+          :iconId="icon.id"
+          :description="icon.description"
           class="WeatherInfoDisplay-forecastDayIcon"
         />
 
@@ -284,7 +275,7 @@ export default {
 
 
 .WeatherInfoDisplay-forecastDayIcon {
-  width: 6rem;
+  width: 7rem;
   font-size: $font-size-small;
 }
 
