@@ -87,14 +87,6 @@ export default {
 
       return Array.from(dayData.entries());
     },
-
-    areUnitsCelcius() {
-      return (this.units === UNIT_CELCIUS);
-    },
-
-    areUnitsFahrenheit() {
-      return (this.units === UNIT_FAHRENHEIT);
-    },
   },
 
   methods: {
@@ -107,7 +99,7 @@ export default {
     },
 
     convertTemperatureFromKelvin(temperature) {
-      if (this.areUnitsCelcius) {
+      if (this.units === UNIT_CELCIUS) {
         return temperature - 273.15;
       } else {
         return (temperature * (9/5)) - 459.67;
@@ -120,7 +112,6 @@ export default {
 
     weekdayName(dateStr) {
       let weekdayNumber = ((new Date(dateStr).getDay() + 7) % 7) + 1;
-      console.log(`weekdayNumber: ${weekdayNumber}`);
       return WEEKDAYS_NAMES[weekdayNumber];
     },
 
