@@ -119,7 +119,8 @@ export default {
     },
 
     weekdayName(dateStr) {
-      let weekdayNumber = (new Date(dateStr).getDay() + 7) % 8;
+      let weekdayNumber = ((new Date(dateStr).getDay() + 7) % 7) + 1;
+      console.log(`weekdayNumber: ${weekdayNumber}`);
       return WEEKDAYS_NAMES[weekdayNumber];
     },
 
