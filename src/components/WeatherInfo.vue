@@ -125,7 +125,6 @@ export default {
         .then(([weatherCurrent, weatherForecast]) => {
           this.weatherCurrent = weatherCurrent;
           this.weatherForecast = weatherForecast;
-          console.log(weatherForecast);
           this.state = STATE_WEATHER_FETCHED;
         })
         .catch(this.makeStateFailed);

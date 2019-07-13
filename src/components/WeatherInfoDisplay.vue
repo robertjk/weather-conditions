@@ -6,7 +6,9 @@
 <script>
 import { WEATHER_FORECAST_DAYS } from '@/components/WeatherInfo';
 import WeatherInfoIcon from '@/components/WeatherInfoIcon';
-import WeatherInfoUnitSelection from '@/components/WeatherInfoUnitSelection'; 
+import WeatherInfoToday from '@/components/WeatherInfoToday'; 
+import { default as WeatherInfoUnitSelection, UNIT_CELCIUS, UNIT_FAHRENHEIT }
+  from '@/components/WeatherInfoUnitSelection'; 
 
 import weatherDataFormatting from '@/mixins/weatherDataFormatting';
 
@@ -16,6 +18,7 @@ export default {
 
   components: {
     WeatherInfoIcon,
+    WeatherInfoToday,
     WeatherInfoUnitSelection,
   },
 
@@ -25,7 +28,7 @@ export default {
 
   data() {
     return {
-      units: undefined,
+      units: UNIT_CELCIUS,
     };
   },
 
@@ -33,9 +36,6 @@ export default {
     weatherCurrent: {
       type: Object,
       required: true,
-      validator(weatherObject) {
-        return ('main' in weatherObject);
-      },
     },
 
     weatherForecast: {
@@ -97,28 +97,11 @@ export default {
 <template>
   <div class="WeatherInfoDisplay">
     <div class="WeatherInfoDisplay-topRow">
-      <!-- Current weather -->
-      <div class="WeatherInfoDisplay-today">
-        <WeatherInfoIcon
-          :iconId="weatherCurrent.weather[0].icon"
-          :description="weatherCurrent.weather[0].description"
-          :bigSize="true"
-          class="WeatherInfoDisplay-todayIcon"
-        />
+      <WeatherInfoToday
+        :weatherCurrent="weatherCurrent"
+        :units="units"
+      />
 
-        <span class="WeatherInfoDisplay-todayTemperatures">
-          <span class="WeatherInfoDisplay-todayCurrent">
-            {{ formatTemperature(weatherCurrent.main.temp, units) }}°
-          </span>
-
-          <span class="WeatherInfoDisplay-todayExtremes">
-            {{ formatTemperature(weatherCurrent.main.temp_min, units) }} /
-            {{ formatTemperature(weatherCurrent.main.temp_max, units) }}°
-          </span>
-        </span>
-      </div>
-
-      <!-- Toggle for changing units -->
       <WeatherInfoUnitSelection
         class="WeatherInfoDisplay-unitToggle"
         @celciusSelected="changeUnitsToCelcius()"
@@ -167,40 +150,9 @@ export default {
 }
 
 .WeatherInfoDisplay-topRow {
-  /* Relative position, so that the buttons can be positioned relatively */
+  /* Relative position, so that the unit toggle can be positioned relatively */
   position: relative;
   grid-area: 'currentWeather';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.WeatherInfoDisplay-today {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-
-.WeatherInfoDisplay-todayIcon {
-  width: 13rem;
-}
-
-
-.WeatherInfoDisplay-todayTemperatures {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  font-size: $font-size-xxlarge;
-}
-
-
-.WeatherInfoDisplay-todayCurrent {
-  margin-bottom: -2.2rem;
-  font-size: $font-size-xxxlarge;
 }
 
 
