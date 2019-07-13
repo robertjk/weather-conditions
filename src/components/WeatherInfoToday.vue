@@ -1,3 +1,8 @@
+<!--
+  Part of weather display, which displays weather for today
+-->
+
+
 <script>
 import WeatherInfoIcon from '@/components/WeatherInfoIcon';
 
@@ -29,7 +34,6 @@ export default {
       required: true,
     },
   },
-
 }
 </script>
 
@@ -55,7 +59,6 @@ export default {
       </span>
     </span>
   </div>
-
 </template>
 
 
