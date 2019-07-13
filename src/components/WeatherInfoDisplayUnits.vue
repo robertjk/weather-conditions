@@ -1,10 +1,15 @@
+<!--
+  Controls for selecting units used to display the weather
+-->
+
+
 <script>
 export const UNIT_CELCIUS = 'celcius';
 export const UNIT_FAHRENHEIT = 'fahrenheit';
 
 
 export default {
-  name: 'WeatherInfoUnitSelection',
+  name: 'WeatherInfoDisplayUnits',
 
 
   data() {
@@ -44,18 +49,18 @@ export default {
 
 
 <template>
-  <div class="WeatherInfoUnitSelection">
+  <div class="WeatherInfoDisplayUnits">
     <button
-      class="WeatherInfoUnitSelection-unitButton"
-      :class="{ 'WeatherInfoUnitSelection--isActive': isCelciusSelected }"
+      class="WeatherInfoDisplayUnits-unitButton"
+      :class="{ 'WeatherInfoDisplayUnits--isActive': isCelciusSelected }"
       aria-label="Celcius"
       @click="selectCelcius()"
     >
       C
     </button>
       <button
-        class="WeatherInfoUnitSelection-unitButton"
-        :class="{ 'WeatherInfoUnitSelection--isActive': isFahrenheitSelected }"
+        class="WeatherInfoDisplayUnits-unitButton"
+        :class="{ 'WeatherInfoDisplayUnits--isActive': isFahrenheitSelected }"
         aria-label="Fahrenheit"
         @click="selectFahrenheit()"
       >
@@ -70,13 +75,13 @@ export default {
 
 
 
-.WeatherInfoUnitSelection {
+.WeatherInfoDisplayUnits {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
-.WeatherInfoUnitSelection-unitButton {
+.WeatherInfoDisplayUnits-unitButton {
   $size: 3rem;
 
   display: flex;
@@ -94,7 +99,7 @@ export default {
     margin-left: 0.8rem;
   }
 
-  &.WeatherInfoUnitSelection--isActive {
+  &.WeatherInfoDisplayUnits--isActive {
     border: none;
     color: $color-grey-dark;
     background-color: $color-white;

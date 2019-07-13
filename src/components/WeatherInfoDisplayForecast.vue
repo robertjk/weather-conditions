@@ -5,16 +5,16 @@
 
 <script>
 import { WEATHER_FORECAST_DAYS } from '@/components/WeatherInfo';
-import WeatherInfoIcon from '@/components/WeatherInfoIcon';
+import WeatherInfoDisplayIcon from '@/components/WeatherInfoDisplayIcon';
 
 import weatherDataFormatting from '@/mixins/weatherDataFormatting';
 
 
 export default {
-  name: 'WeatherInfoForecast',
+  name: 'WeatherInfoDisplayForecast',
 
   components: {
-    WeatherInfoIcon,
+    WeatherInfoDisplayIcon,
   },
 
   mixins: [
@@ -74,20 +74,20 @@ export default {
 
 
 <template>
-  <ul class="WeatherInfoForecast">
+  <ul class="WeatherInfoDisplayForecast">
     <li
       v-for="[weekday, { max, min, icon }] in weatherForecastProcessed"
-      class="WeatherInfoForecast-day"
+      class="WeatherInfoDisplayForecast-day"
     >
-      <WeatherInfoIcon
+      <WeatherInfoDisplayIcon
         :iconId="icon.id"
         :description="icon.description"
-        class="WeatherInfoForecast-dayIcon"
+        class="WeatherInfoDisplayForecast-dayIcon"
       />
 
-      <span class="WeatherInfoForecast-dayDetails">
+      <span class="WeatherInfoDisplayForecast-dayDetails">
         <!-- Name of the day -->
-        <span class="WeatherInfoForecast-dayName">
+        <span class="WeatherInfoDisplayForecast-dayName">
           {{ weekday }}
         </span>
         <!-- Min and max temperatures -->
@@ -102,14 +102,14 @@ export default {
 @import '@/assets/styles/shared/_settings.scss';
 
 
-.WeatherInfoForecast {
+.WeatherInfoDisplayForecast {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
 
-.WeatherInfoForecast-day {
+.WeatherInfoDisplayForecast-day {
   $border: #{$border-width / 2} $border-style $border-color;
 
   flex-grow: 1;
@@ -142,18 +142,18 @@ export default {
 }
 
 
-.WeatherInfoForecast-dayIcon {
+.WeatherInfoDisplayForecast-dayIcon {
   width: 7rem;
   font-size: $font-size-small;
 }
 
 
-.WeatherInfoForecast-dayDetails {
+.WeatherInfoDisplayForecast-dayDetails {
   font-size: $font-size-large;
 }
 
 
-.WeatherInfoForecast-dayName {
+.WeatherInfoDisplayForecast-dayName {
   text-transform: uppercase;
 }
 </style>

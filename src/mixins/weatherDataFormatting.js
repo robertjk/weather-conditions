@@ -4,7 +4,7 @@
  */
 
 
-import { UNIT_CELCIUS } from '@/components/WeatherInfoUnitSelection'; 
+import { UNIT_CELCIUS } from '@/components/WeatherInfoDisplayUnits'; 
 
 
 const WEEKDAYS_NAMES = {

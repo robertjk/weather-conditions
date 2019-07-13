@@ -4,16 +4,16 @@
 
 
 <script>
-import WeatherInfoIcon from '@/components/WeatherInfoIcon';
+import WeatherInfoDisplayIcon from '@/components/WeatherInfoDisplayIcon';
 
 import weatherDataFormatting from '@/mixins/weatherDataFormatting';
 
 
 export default {
-  name: 'WeatherInfoToday',
+  name: 'WeatherInfoDisplayToday',
 
   components: {
-    WeatherInfoIcon,
+    WeatherInfoDisplayIcon,
   },
 
   mixins: [
@@ -40,20 +40,20 @@ export default {
 
 <template>
   <!-- Current weather -->
-  <div class="WeatherInfoToday">
-    <WeatherInfoIcon
+  <div class="WeatherInfoDisplayToday">
+    <WeatherInfoDisplayIcon
       :iconId="weatherCurrent.weather[0].icon"
       :description="weatherCurrent.weather[0].description"
       :bigSize="true"
-      class="WeatherInfoToday-icon"
+      class="WeatherInfoDisplayToday-icon"
     />
 
-    <span class="WeatherInfoToday-temperatures">
-      <span class="WeatherInfoToday-current">
+    <span class="WeatherInfoDisplayToday-temperatures">
+      <span class="WeatherInfoDisplayToday-current">
         {{ formatTemperature(weatherCurrent.main.temp, units) }}°
       </span>
 
-      <span class="WeatherInfoToday-extremes">
+      <span class="WeatherInfoDisplayToday-extremes">
         {{ formatTemperature(weatherCurrent.main.temp_min, units) }} /
         {{ formatTemperature(weatherCurrent.main.temp_max, units) }}°
       </span>
@@ -66,7 +66,7 @@ export default {
 @import '@/assets/styles/shared/_settings.scss';
 
 
-.WeatherInfoToday {
+.WeatherInfoDisplayToday {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -75,12 +75,12 @@ export default {
 }
 
 
-.WeatherInfoToday-icon {
+.WeatherInfoDisplayToday-icon {
   width: 13rem;
 }
 
 
-.WeatherInfoToday-temperatures {
+.WeatherInfoDisplayToday-temperatures {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -89,7 +89,7 @@ export default {
 }
 
 
-.WeatherInfoToday-current {
+.WeatherInfoDisplayToday-current {
   margin-bottom: -2.2rem;
   font-size: $font-size-xxxlarge;
 }

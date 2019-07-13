@@ -4,21 +4,19 @@
 
 
 <script>
-import WeatherInfoForecast from '@/components/WeatherInfoForecast'; 
-import WeatherInfoIcon from '@/components/WeatherInfoIcon';
-import WeatherInfoToday from '@/components/WeatherInfoToday'; 
-import { default as WeatherInfoUnitSelection, UNIT_CELCIUS, UNIT_FAHRENHEIT }
-  from '@/components/WeatherInfoUnitSelection'; 
+import WeatherInfoDisplayForecast from '@/components/WeatherInfoDisplayForecast'; 
+import WeatherInfoDisplayToday from '@/components/WeatherInfoDisplayToday'; 
+import { default as WeatherInfoDisplayUnits, UNIT_CELCIUS, UNIT_FAHRENHEIT }
+  from '@/components/WeatherInfoDisplayUnits'; 
 
 
 export default {
   name: 'WeatherInfoDisplay',
 
   components: {
-    WeatherInfoForecast,
-    WeatherInfoIcon,
-    WeatherInfoToday,
-    WeatherInfoUnitSelection,
+    WeatherInfoDisplayForecast,
+    WeatherInfoDisplayToday,
+    WeatherInfoDisplayUnits,
   },
 
   data() {
@@ -55,20 +53,19 @@ export default {
 <template>
   <div class="WeatherInfoDisplay">
     <div class="WeatherInfoDisplay-topRow">
-      <WeatherInfoToday
+      <WeatherInfoDisplayToday
         :weatherCurrent="weatherCurrent"
         :units="units"
       />
 
-      <WeatherInfoUnitSelection
+      <WeatherInfoDisplayUnits
         class="WeatherInfoDisplay-unitToggle"
         @celciusSelected="changeUnitsToCelcius()"
         @fahrenheitSelected="changeUnitsToFahrenheit()"
       />
     </div>
 
-    <!-- Forecast for the next 5 days -->
-    <WeatherInfoForecast
+    <WeatherInfoDisplayForecast
       :weatherForecast="weatherForecast"
       :units="units"
       class="WeatherInfoDisplay-forecast"
