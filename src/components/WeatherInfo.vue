@@ -219,6 +219,6 @@ $panel-max-height: $panel-width-to-height-factor * $panel-max-width;
 
 .WeatherInfo-stateText {
   font-size: $font-size-xlarge;
-  max-width: 300px;
+  max-width: 260px;
 }
 </style>
