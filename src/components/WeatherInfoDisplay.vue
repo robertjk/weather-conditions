@@ -95,6 +95,9 @@ export default {
   /* Relative position, so that the unit toggle can be positioned relatively */
   position: relative;
   grid-area: 'currentWeather';
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
