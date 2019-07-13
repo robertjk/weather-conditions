@@ -15,11 +15,11 @@ export default {
 
   computed: {
     isCelciusSelected() {
-      return (this.units === UNIT_CELCIUS);
+      return (this.selectedUnits === UNIT_CELCIUS);
     },
 
     isFahrenheitSelected() {
-      return (this.units === UNIT_FAHRENHEIT);
+      return (this.selectedUnits === UNIT_FAHRENHEIT);
     },
   },
 
