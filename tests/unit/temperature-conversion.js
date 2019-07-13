@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Vue from 'vue';
 
 import { UNIT_CELCIUS, UNIT_FAHRENHEIT }
-  from '@/components/WeatherInfoUnitSelection'; 
+  from '@/components/WeatherInfoDisplayUnits'; 
 
 import weatherDataFormatting from '@/mixins/weatherDataFormatting';
 
