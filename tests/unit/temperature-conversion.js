@@ -1,7 +1,10 @@
 import { expect } from 'chai';
 import Vue from 'vue';
 
-import WeatherInfoDisplay from '@/components/WeatherInfoDisplay';
+import { UNIT_CELCIUS, UNIT_FAHRENHEIT }
+  from '@/components/WeatherInfoUnitSelection'; 
+
+import weatherDataFormatting from '@/mixins/weatherDataFormatting';
 
 
 // Kelvin to Fahrenheit conversions are not round, so the float rounding errors
@@ -9,12 +12,13 @@ import WeatherInfoDisplay from '@/components/WeatherInfoDisplay';
 const DELTA_FAHRENHEIT = 0.01;
 
 
-describe('WeatherInfoDisplay', () => {
-  let component = new Vue(WeatherInfoDisplay);
-  let convert = component.convertTemperatureFromKelvin;
+describe('weatherDataFormatting', () => {
+  let component = new Vue(weatherDataFormatting);
 
   it('converts the temperature properly from Kelvin to Celcius', () => {
-    component.changeUnitsToCelcius();
+    function convert(temperature) {
+      return component.convertTemperatureFromKelvin(temperature, UNIT_CELCIUS);
+    }
 
     expect(convert(0)).to.equal(-273.15);
     expect(convert(1)).to.equal(-272.15);
@@ -24,7 +28,9 @@ describe('WeatherInfoDisplay', () => {
   });
 
   it('converts the temperature properly from Kelvin to Fahrenheit', () => {
-    component.changeUnitsToFenhrenheit();
+    function convert(temperature) {
+      return component.convertTemperatureFromKelvin(temperature, UNIT_FAHRENHEIT);
+    }
 
     expect(convert(0)).to.be.closeTo(-459.67, DELTA_FAHRENHEIT);
     expect(convert(100)).to.be.closeTo(-279.67, DELTA_FAHRENHEIT);
